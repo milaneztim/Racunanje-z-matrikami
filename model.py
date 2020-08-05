@@ -1,9 +1,12 @@
 import Operacije
 
+
 class Matrika:
 
     def __init__(self, seznam):
         self.seznam = seznam
+        self.m = len(self.seznam)
+        self.n = len(self.seznam[0])
     
     def __add__(self, other):
         return Operacije.vsota(self.seznam, other.seznam)
