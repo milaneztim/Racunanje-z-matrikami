@@ -1,4 +1,4 @@
-def identiteta(n):  
+def identiteta(n):
     rezultat = []
     for i in range(n):
         vrstica = []
@@ -64,8 +64,9 @@ def determinanta(mat):
 
 def inverz(mat):
     n = len(mat)
-    prirejenka = [[(-1) ** (i + j) * determinanta(podmatrika(mat, i, j)) for j in range(n)] for i in range(n)]
-    return mnozenje_s_skalarjem(transponirano(prirejenka), 1 // determinanta (mat))
+    prirejenka = [[(-1) ** (i + j) * determinanta(podmatrika(mat, i, j))
+                  for j in range(n)] for i in range(n)]
+    return mnozenje_s_skalarjem(transponirano(prirejenka), 1 // determinanta(mat))
 
 
 def potenca(mat, k):
@@ -77,7 +78,7 @@ def potenca(mat, k):
     elif k < 0:
         return potenca(inverz(mat), abs(k))
     else:
-        return potenca(produkt(mat, mat), k -1)
+        return potenca(produkt(mat, mat), k-1)
 
 
 def sled(mat):
@@ -92,8 +93,3 @@ def hadamardov_produkt(mat1, mat2):
     m = len(mat1)
     n = len(mat1[0])
     return [[mat1[i][j] * mat2[i][j] for j in range(n)] for i in range(m)]
-
-
-    
-
- 

@@ -1,4 +1,5 @@
-from model import Matrika
+import model
+
 
 def dolzina_maksimalnega_clena(sez):
     m = len(sez)
@@ -7,16 +8,13 @@ def dolzina_maksimalnega_clena(sez):
     return len(str(najvecji))
 
 
-
-
-
 def prikaz_matrike(sez):
     m = len(sez)
     n = len(sez[0])
     razmik = dolzina_maksimalnega_clena(sez)
     for i in range(m):
         vrstica = '|'
-        for j in range(n):               
+        for j in range(n):
             clen = sez[i][j]
             razlika = razmik - len(str(clen))
             for _ in range(razlika // 2 + 1):
@@ -28,22 +26,22 @@ def prikaz_matrike(sez):
                 vrstica += ' '
         print(vrstica + ' |')
 
-def zahtevaj_velikost():    
+
+def zahtevaj_velikost():
     return input("Stevilo vrstic: "), input("Stevilo stolpcev: ")
 
 
 def zahtevaj_vnos(m, n):
-    return [[int(input("a_{0}{1} = ".format(i, j))) for j in range(1, n+1)] for i in range(1, m+1)]
-       
-
+    return [[int(input("a_{0},{1} = ".format(i, j))) for j in range(1, n+1)]
+            for i in range(1, m+1)]
 
 
 def pozeni_vmesnik():
     while True:
         m, n = zahtevaj_velikost()
         sez = zahtevaj_vnos(int(m), int(n))
-        print(prikaz_matrike(sez))
+        return sez
 
 
-
-pozeni_vmesnik()
+a = pozeni_vmesnik()
+print(prikaz_matrike(a)) 
