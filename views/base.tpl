@@ -7,14 +7,14 @@
 
 <body>
 
-  <h1 style="text-align:center">Matricni kalkulator</h1>
+  <h1 style="text-align:center">Matrični kalkulator</h1>
 
-  <blockquote>
-    Versatilen kalkulator, ki omogoca racunanje z matrikami.
+  <blockquote style="font-size:20px;">
+    Versatilen kalkulator, ki omogoča računanje z matrikami.
   </blockquote>
   
-  <form action="/nova_igra/" method="post">
-    <button type="submit">Start</button>
+  <form action="/vnos-dimenzije/A" method="POST" style="text-align:center; font-size:25px;">
+    <input type="submit" value="Začni">
   </form>
 
 </body>

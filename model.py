@@ -1,8 +1,6 @@
 import Operacije
 import tekstovni_vmesnik
 
-ZACETEK = 'S'
-
 
 class Matrika:
 
@@ -21,6 +19,9 @@ class Matrika:
         else:
             return Operacije.produkt(self.sez, other.sez)
 
+    def hadamard_product(self, other):
+        return Operacije.hadamardov_produkt(self.sez, other.sez)
+
     def __pow__(self, potenca):
         return Operacije.potenca(self.sez, potenca)
 
@@ -33,23 +34,20 @@ class Matrika:
     def tr(self):
         return Operacije.sled(self.sez)
 
-    def hadamard_product(self, other):
-        return Operacije.hadamardov_produkt(self.sez, other.sez)
-
 
 class Racun:
 
     def __init__(self):
-        self.igre = {}
+        # vsebuje slovar matrik in slovar dimenzij matrik
+        self.dimenzije = {}
+        self.matrike = {}
 
-    def prost_id_igre(self):
-        if len(self.igre) == 0:
-            return 0
-        else:
-            return max(self.igre.keys()) + 1
+    def shrani_dimenzije(self, ime, m, n):
+        self.dimenzije[ime] = [m, n]
 
-    def nova_matrika(self):
-        matrika = tekstovni_vmesnik.pozeni_vmesnik()
-        id_igre = self.prost_id_igre()
-        self.igre[id_igre] = (matrika, ZACETEK)
-        return id_igre
+    def shrani_matriko(self, ime, seznam):
+        self.matrike[ime] = Matrika(seznam)
+
+    def izvedi_operacijo(self, ime_prve, ime_druge, operacija):
+        # to je še za napisat
+        pass

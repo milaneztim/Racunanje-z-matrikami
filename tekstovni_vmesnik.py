@@ -43,5 +43,5 @@ def pozeni_vmesnik():
         return sez
 
 
-a = pozeni_vmesnik()
-print(prikaz_matrike(a)) 
+#a = pozeni_vmesnik()
+#print(prikaz_matrike(a))

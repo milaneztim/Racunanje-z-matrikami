@@ -66,7 +66,7 @@ def inverz(mat):
     n = len(mat)
     prirejenka = [[(-1) ** (i + j) * determinanta(podmatrika(mat, i, j))
                   for j in range(n)] for i in range(n)]
-    return mnozenje_s_skalarjem(transponirano(prirejenka), 1 // determinanta(mat))
+    return mnozenje_s_skalarjem(transponirano(prirejenka), 1 / determinanta(mat))
 
 
 def potenca(mat, k):
