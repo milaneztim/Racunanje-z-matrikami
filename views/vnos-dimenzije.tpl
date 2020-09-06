@@ -27,11 +27,11 @@
 </head>
 <body>
 	<div class="">
-		<h2>Vnesi dimenzijo</h2>
+		<h2>Vnesite dimenzijo:</h2>
 		<form action="/vnos-matrike/{{ime_matrike}}" method="POST" class="matrika">
 			<div class="vrstica">
-				<input type="number" step="any" min="1" max="10" class="element" name="m">
-				<input type="number" step="any" min="1" max="10" class="element" name="n">
+				<input type="number" step="any" min="1" max="10" class="element" name="m" autofocus required>
+				<input type="number" step="any" min="1" max="10" class="element" name="n" required>
 			</div>
 			<input type="submit" value="Shrani dimenzijo">
 		</form>

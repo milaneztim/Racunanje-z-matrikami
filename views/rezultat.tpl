@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -27,7 +27,7 @@
 </head>
 <body>
 	<div class="">
-		<h2>Vnesite elemente matrike:</h2>
+		<h2>Vnesite elemente matrike</h2>
 		<form action="/dodaj-matriko/{{ime_matrike}}" method="POST" class="matrika">
 			% for i in range(m):
 				<div class="vrstica">

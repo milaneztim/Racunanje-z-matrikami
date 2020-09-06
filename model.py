@@ -38,7 +38,6 @@ class Matrika:
 class Racun:
 
     def __init__(self):
-        # vsebuje slovar matrik in slovar dimenzij matrik
         self.dimenzije = {}
         self.matrike = {}
 
@@ -49,5 +48,13 @@ class Racun:
         self.matrike[ime] = Matrika(seznam)
 
     def izvedi_operacijo(self, ime_prve, ime_druge, operacija):
-        # to je še za napisat
-        pass
+        mat1 = self.matrike[ime_prve]
+        mat2 = self.matrike[ime_druge]
+        if operacija == "plus":
+            return mat1 + mat2
+        if operacija == "minus":
+            return mat1 - mat2
+        if operacija == "produkt":
+            return mat1 * mat2
+        if operacija == "hadamard":
+            return mat1.hadamard_product(mat2)

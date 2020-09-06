@@ -18,25 +18,13 @@ def vnos_dimenzije(ime_matrike):
 @bottle.post('/vnos-matrike/<ime_matrike>')
 def vnos_matrike(ime_matrike):
     podatki = bottle.request.forms
+    m = int(podatki.get("m"))
+    n = int(podatki.get("n"))
 
-    try:
-        m = int(podatki.get("m"))
-    except:
-        m = 1
-    try:
-        n = int(podatki.get("n"))
-    except:
-        n = 1
     racun.shrani_dimenzije(ime_matrike, m, n)
     return bottle.template('vnos-matrike.tpl', m=m, n=n, ime_matrike=ime_matrike)
 
 
-@bottle.get('/izberi-operacijo/')
-def izberi_operacijo():
-    return bottle.template('izberi-operacijo.tpl')
-
-
-# shranjevanje vpisanih podatkov, sem pripelje gumb Shrani matriko
 @bottle.post('/dodaj-matriko/<ime_matrike>')
 def dodaj_matriko(ime_matrike):
     podatki = bottle.request.forms
@@ -47,7 +35,7 @@ def dodaj_matriko(ime_matrike):
     for i in range(m):
         vrstica = []
         for j in range(n):
-            element = podatki.get('{}x{}'.format(i, j))
+            element = float(podatki.get('{}x{}'.format(i, j)))
             try:
                 element = float(element)
             except:
@@ -55,7 +43,26 @@ def dodaj_matriko(ime_matrike):
             vrstica.append(element)
         matrika_seznam.append(vrstica)
     racun.shrani_matriko(ime_matrike, matrika_seznam)
-    return bottle.redirect('/izberi-operacijo/')
+    if ime_matrike == 'A':
+        return bottle.redirect('/izberi-operacijo/')
+    else:
+        return bottle.redirect('/rezultat/')
+
+
+@bottle.get('/izberi-operacijo/')
+def izberi_operacijo():
+    return bottle.template('izberi-operacijo.tpl')
+
+
+@bottle.post('/rezultat/')
+def izvedi_racun():
+    if bottle.request.get('plus'):
+        rezultat = racun.izvedi_operacijo('A', 'B', 'plus')
+        print(rezultat)
+
+@bottle.get('/img/<picture>')
+def serve_pictures(picture):
+    return bottle.static_file(picture, root='img')
 
 
 bottle.run(reloader=True, debug=True)
