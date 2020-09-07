@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -6,7 +6,7 @@
 	<title>Matrike</title>
 
 	<style>
-
+	
 		.matrika {
 			margin: 1em;
 		}
@@ -26,18 +26,14 @@
 	</style>
 </head>
 <body>
-	<div class="">
-		<h2>Vnesite elemente matrike</h2>
-		<form action="/dodaj-matriko/{{ime_matrike}}" method="POST" class="matrika">
-			% for i in range(m):
-				<div class="vrstica">
-					% for j in range(n):
-						<input type="number" step="any" class="element" placeholder="0" name="{{i}}x{{j}}">
-					% end
-				</div>
-			% end
-			<input type="submit" value="Shrani matriko">
-		</form>
-	</div>
+	<h2>Rezultat:</h2>
+	<p>
+		% for _ in range(2):
+			{{rezultat}}
+		% end
+		% for _ in range(2):
+			{{test}}
+		% end
+	</p>
 </body>
 </html>

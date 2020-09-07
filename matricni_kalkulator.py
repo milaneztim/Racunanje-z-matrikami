@@ -1,5 +1,6 @@
 import bottle
 import model
+import tekstovni_vmesnik
 
 
 racun = model.Racun()
@@ -35,7 +36,7 @@ def dodaj_matriko(ime_matrike):
     for i in range(m):
         vrstica = []
         for j in range(n):
-            element = float(podatki.get('{}x{}'.format(i, j)))
+            element = podatki.get('{}x{}'.format(i, j))
             try:
                 element = float(element)
             except:
@@ -56,9 +57,12 @@ def izberi_operacijo():
 
 @bottle.post('/rezultat/')
 def izvedi_racun():
-    if bottle.request.get('plus'):
-        rezultat = racun.izvedi_operacijo('A', 'B', 'plus')
-        print(rezultat)
+    operacija = bottle.request.forms.get("operacija")
+    test = [operacija, "hej"]
+    if operacija in ["det", "trace"]:
+        test = ["hej"]
+    return bottle.template('rezultat.tpl', rezultat=operacija, test=test)
+
 
 @bottle.get('/img/<picture>')
 def serve_pictures(picture):

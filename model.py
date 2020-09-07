@@ -11,7 +11,8 @@ class Matrika:
         return Operacije.vsota(self.sez, other.sez)
 
     def __sub__(self, other):
-        return Operacije.vsota(self.sez, Operacije.mnozenje_s_skalarjem(other.sez, -1))
+        nasprotna_vrednost = Operacije.mnozenje_s_skalarjem(other.sez, -1)
+        return Operacije.vsota(self.sez, nasprotna_vrednost)
 
     def __mul__(self, other):
         if type(other) is int:
@@ -47,8 +48,10 @@ class Racun:
     def shrani_matriko(self, ime, seznam):
         self.matrike[ime] = Matrika(seznam)
 
-    def izvedi_operacijo(self, ime_prve, ime_druge, operacija):
+    def izvedi_operacijo(self, ime_prve, operacija, ime_druge=None):
         mat1 = self.matrike[ime_prve]
+        if operacija == "potenca":
+            return mat1 ** ime_druge
         mat2 = self.matrike[ime_druge]
         if operacija == "plus":
             return mat1 + mat2
@@ -58,3 +61,9 @@ class Racun:
             return mat1 * mat2
         if operacija == "hadamard":
             return mat1.hadamard_product(mat2)
+        if operacija == "transpose":
+            return mat1.transpose()
+        if operacija == "det":
+            return mat1.det()
+        if operacija == "trace":
+            return mat1.tr()
