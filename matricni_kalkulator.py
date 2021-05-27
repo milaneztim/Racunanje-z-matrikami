@@ -105,13 +105,12 @@ def izvedi_racun():
         rezultat = racun.izvedi_operacijo('A', operacija, 'B')
         return bottle.template('rezultat.tpl', rezultat=rezultat, m=m, n=n)
     elif operacija in ["det", "trace"]:
-        rezultat = racun.izvedi_operacijo('A', operacija)
         m = racun.dimenzije['A'][0]
         n = racun.dimenzije['A'][1]
-        if m == n:
-            return bottle.template('rezultat-skalar.tpl', rezultat=rezultat)
-        else:
+        if m != n:
             return bottle.template('napaka-dimenzija.tpl')
+        rezultat = racun.izvedi_operacijo('A', operacija)
+        return bottle.template('rezultat-skalar.tpl', rezultat=rezultat)
     elif operacija in ["transpose"]:
         m = racun.dimenzije['A'][1]
         n = racun.dimenzije['A'][0]
