@@ -1,6 +1,6 @@
 import bottle
 import model
-import tekstovni_vmesnik
+from tekstovni_vmesnik import prikazi_matriko
 
 
 racun = model.Racun()
@@ -17,12 +17,18 @@ def vnos_dimenzije(ime_matrike):
 
 
 @bottle.post('/vnos-matrike/<ime_matrike>')
-def vnos_matrike(ime_matrike):
+def prvi_vnos_matrike(ime_matrike):
     podatki = bottle.request.forms
     m = int(podatki.get("m"))
     n = int(podatki.get("n"))
-
     racun.shrani_dimenzije(ime_matrike, m, n)
+    return bottle.template('vnos-matrike.tpl', m=m, n=n, ime_matrike=ime_matrike)
+
+
+@bottle.get('/vnos-matrike/<ime_matrike>')
+def drugi_vnos_matrike(ime_matrike):
+    m = racun.dimenzije['B'][0]
+    n = racun.dimenzije['B'][1]
     return bottle.template('vnos-matrike.tpl', m=m, n=n, ime_matrike=ime_matrike)
 
 
@@ -55,13 +61,71 @@ def izberi_operacijo():
     return bottle.template('izberi-operacijo.tpl')
 
 
-@bottle.post('/rezultat/')
-def izvedi_racun():
+@bottle.post('/shrani-operacijo/')
+def shrani_operacijo():
     operacija = bottle.request.forms.get("operacija")
-    test = [operacija, "hej"]
-    if operacija in ["det", "trace"]:
-        test = ["hej"]
-    return bottle.template('rezultat.tpl', rezultat=operacija, test=test)
+    racun.shrani_operacijo('A', operacija)
+    if operacija in ["det", "transpose", "trace"]:
+        return bottle.redirect('/rezultat/')
+    elif operacija in ["plus", "minus", "hadamard"]:
+        m = racun.dimenzije['A'][0]
+        n = racun.dimenzije['A'][1]
+        racun.shrani_dimenzije('B', m, n)
+        return bottle.redirect('/vnos-matrike/B')
+    elif operacija in ["produkt"]:
+        return bottle.redirect('/vnos-dimenzije-produkt/')
+    elif operacija in ["potenca"]:
+        return bottle.redirect('/vnos-potence/')
+
+
+@bottle.get('/vnos-dimenzije-produkt/')
+def vnos_dimenzije_produkt():
+    n = racun.dimenzije['A'][1]
+    return bottle.template('vnos-dimenzije-produkt.tpl', m=n)
+
+
+@bottle.get('/vnos-potence/')
+def vnos_potence():
+    return bottle.template('vnos-potence.tpl')
+
+
+@bottle.post('/shrani-potenco/')
+def shrani_potenco():
+    potenca = int(bottle.request.forms.get("potenca"))
+    racun.shrani_matriko('B', potenca)
+    return bottle.redirect('/rezultat/')
+
+
+@bottle.get('/rezultat/')            
+def izvedi_racun():
+    operacija = racun.operacije['A']
+    if operacija in ["plus", "minus", "hadamard", "produkt"]:
+        m = racun.dimenzije['A'][0]
+        n = racun.dimenzije['B'][1]
+        rezultat = racun.izvedi_operacijo('A', operacija, 'B')
+        return bottle.template('rezultat.tpl', rezultat=rezultat, m=m, n=n)
+    elif operacija in ["det", "trace"]:
+        rezultat = racun.izvedi_operacijo('A', operacija)
+        m = racun.dimenzije['A'][0]
+        n = racun.dimenzije['A'][1]
+        if m == n:
+            return bottle.template('rezultat-skalar.tpl', rezultat=rezultat)
+        else:
+            return bottle.template('napaka-dimenzija.tpl')
+    elif operacija in ["transpose"]:
+        m = racun.dimenzije['A'][1]
+        n = racun.dimenzije['A'][0]
+        rezultat = racun.izvedi_operacijo('A', operacija)
+        return bottle.template('rezultat.tpl', rezultat=rezultat, m=m, n=n)
+    elif operacija in ["potenca"]:
+        m = racun.dimenzije['A'][0]
+        n = racun.dimenzije['A'][1]
+        if m != n:
+            return bottle.template('napaka-dimenzija.tpl')
+        if racun.izvedi_operacijo('A', 'det') == 0:
+            return bottle.template('napaka-izrojena.tpl')
+        rezultat = racun.izvedi_operacijo('A', operacija, 'B')
+        return bottle.template('rezultat.tpl', rezultat=rezultat, m=m, n=n)
 
 
 @bottle.get('/img/<picture>')

@@ -8,7 +8,7 @@
 	<style>
 
         .button {
-            border: None;
+            border: solid;
             margin: 10px 10px;
         }
 
@@ -21,26 +21,52 @@
 <body>	
 	<h2>Izberite operacijo:</h2>
         <table>
-            <form action="/vnos_matrike/B" method="POST" class="matrika">
+            <form action="/shrani-operacijo/" method="POST">
                 <tr>
-                    <th><input type="image" src="/img/plus.png" alt="+" width="60" height="60" class="button" name="operacija" value="plus"></th>
-                    <th><input type="image" src="/img/minus.png" alt="-" width="60" height="60" class="button" name="operacija" value="minus"></th>                
-            </form>
-            <form action="/vnos-dimenzije/B" method="POST" class="matrika">
-                    <th><input type="image" src="/img/produkt.png" alt="*" width="60" height="60" class="button" name="operacija" value="produkt"></th>
-            </form>
+                    <th>
+                        <button class="button" name="operacija" value="plus">
+                            <img src="/img/plus.png" alt="+" width="60" height="60">
+                        </button>
+                    </th>
+                    <th>
+                        <button class="button" name="operacija" value="minus">
+                            <img src="/img/minus.png" alt="-" width="60" height="60">
+                        </button>
+                    </th>                
+                    <th>
+                        <button class="button" name="operacija" value="produkt">
+                            <img src="/img/produkt.png" alt="*" width="60" height="60">
+                        </button>
+                    </th>
                 </tr>    
                 <tr>
-            <form action="/vnos_matrike/B" method="POST" class="matrika">
-                    <th><input type="image" src="/img/hadamard.png" alt="o" width="60" height="60" class="button" name="operacija" value="hadamard"></th>
-                    <th><input type="image" src="/img/up-arrow.png" alt="^" width="60" height="60" class="button" name="operacija" value="potenca"></th> 
-            </form>
-            <form action="/rezultat/" method="POST" class="matrika">               
-                    <th><input type="image" src="/img/det1.jpg" alt="det" width="110" height="70" class="button" name="operacija" value="det"></th>
+                    <th>
+                        <button class="button" name="operacija" value="hadamard">
+                            <img src="/img/hadamard.png" alt="o" width="60" height="60">
+                        </button>
+                    </th>
+                    <th>
+                        <button class="button" name="operacija" value="potenca">
+                            <img src="/img/up-arrow.png" alt="^" width="60" height="60">
+                        </button>
+                    </th>             
+                    <th>
+                        <button class="button" name="operacija" value="det">
+                            <img src="/img/det1.jpg" alt="det" width="100" height="70">
+                        </button>
+                    </th>
                 </tr>
                 <tr>
-                    <th><input type="image" src="/img/trace.jpg" alt="t" width="90" height="60" class="button" name="operacija" value="trace"></th>
-                    <th><input type="image" src="/img/transpose.png" alt="tr" width="50" height="50" class="button" name="operacija" value="transpose"></th>            
+                    <th>
+                        <button class="button" name="operacija" value="trace">
+                            <img src="/img/trace.jpg" alt="tr" width="100" height="60">
+                        </button>                        
+                    </th>
+                    <th>
+                        <button class="button" name="operacija" value="transpose">
+                            <img src="/img/transpose.png" alt="t" width="50" height="50">
+                        </button>
+                    </th>            
                 </tr>
             </form> 
 	

@@ -20,24 +20,18 @@
 		}
 
 		.element {
-			width: 4.5em;
+			width: 3em;
 			margin: 0.5em;
 		}
 	</style>
 </head>
 <body>
-	<h2>Vnesite elemente matrike:</h2>
-	<div class='matrika'>
-		<form action="/dodaj-matriko/{{ime_matrike}}" method="POST" class="matrika">
-			% for i in range(m):
-				<div class="vrstica">
-					% for j in range(n):
-						<input type="number" step="any" class="element" placeholder="0" name="{{i}}x{{j}}">
-					% end
-				</div>
-			% end
-	</div>
-		<input type="submit" value="Shrani matriko" class="matrika">
+	<h2>Vnesite potenco:</h2>
+	<form action="/shrani-potenco/" method="POST" class="matrika">
+		<div class="vrstica">
+			<input type="number" step="any" class="element" name="potenca" required>
+		</div>
+		<input type="submit" value="Shrani potenco" class="matrika">
 	</form>
 </body>
 </html>

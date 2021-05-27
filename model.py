@@ -1,5 +1,4 @@
 import Operacije
-import tekstovni_vmesnik
 
 
 class Matrika:
@@ -24,7 +23,7 @@ class Matrika:
         return Operacije.hadamardov_produkt(self.sez, other.sez)
 
     def __pow__(self, potenca):
-        return Operacije.potenca(self.sez, potenca)
+        return Operacije.potenca(self.sez, potenca.sez)
 
     def det(self):
         return Operacije.determinanta(self.sez)
@@ -41,6 +40,7 @@ class Racun:
     def __init__(self):
         self.dimenzije = {}
         self.matrike = {}
+        self.operacije = {}
 
     def shrani_dimenzije(self, ime, m, n):
         self.dimenzije[ime] = [m, n]
@@ -48,10 +48,17 @@ class Racun:
     def shrani_matriko(self, ime, seznam):
         self.matrike[ime] = Matrika(seznam)
 
+    def shrani_operacijo(self, ime, operacija):
+        self.operacije[ime] = operacija
+
     def izvedi_operacijo(self, ime_prve, operacija, ime_druge=None):
         mat1 = self.matrike[ime_prve]
-        if operacija == "potenca":
-            return mat1 ** ime_druge
+        if operacija == "det":
+            return mat1.det()
+        if operacija == "trace":
+            return mat1.tr()
+        if operacija == "transpose":
+            return mat1.transpose()
         mat2 = self.matrike[ime_druge]
         if operacija == "plus":
             return mat1 + mat2
@@ -61,9 +68,5 @@ class Racun:
             return mat1 * mat2
         if operacija == "hadamard":
             return mat1.hadamard_product(mat2)
-        if operacija == "transpose":
-            return mat1.transpose()
-        if operacija == "det":
-            return mat1.det()
-        if operacija == "trace":
-            return mat1.tr()
+        if operacija == "potenca":
+            return mat1 ** mat2

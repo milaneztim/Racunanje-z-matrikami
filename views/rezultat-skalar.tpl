@@ -25,20 +25,11 @@
 		}
 	</style>
 </head>
-<body>	
+<body>
 	<h2>Rezultat:</h2>
-	<div class="matrika">
-		% for i in range(m):
-			<div class="vrstica">
-				% for j in range(n):
-					<input type="number" step="any" class="element" name="{{i}}x{{j}}" value="{{rezultat[i][j]}}">
-				% end
-			</div>
-		% end
+	<div class="matrika" style="font-size:30px">
+        {{rezultat}}
 	</div>
-	<form action="/dodaj-matriko/A" method="POST" class="matrika">
-	<input type="submit" value="Uporabi to matriko">
-	</form>
 	<form action="/vnos-dimenzije/A" method="POST" class="matrika">
 	<input type="submit" value="Nov račun">
 	</form>

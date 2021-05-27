@@ -43,5 +43,25 @@ def pozeni_vmesnik():
         return sez
 
 
+def prikazi_matriko(sez):
+    m = len(sez)
+    n = len(sez[0])
+    razmik = dolzina_maksimalnega_clena(sez)
+    matrika = ''
+    for i in range(m):
+        vrstica = '|'
+        for j in range(n):
+            clen = sez[i][j]
+            razlika = razmik - len(str(clen))
+            for _ in range(razlika // 2 + 1):
+                vrstica += ' '
+            vrstica += str(clen)
+            for _ in range(razlika // 2):
+                vrstica += ' '
+            if razlika % 2 == 1:
+                vrstica += ' '
+        matrika += (vrstica + ' |\n')
+    return matrika
+
 #a = pozeni_vmesnik()
 #print(prikaz_matrike(a))
