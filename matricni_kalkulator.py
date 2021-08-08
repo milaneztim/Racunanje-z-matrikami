@@ -1,6 +1,5 @@
 import bottle
 import model
-from tekstovni_vmesnik import prikazi_matriko
 
 
 racun = model.Racun()
@@ -103,6 +102,7 @@ def izvedi_racun():
         m = racun.dimenzije['A'][0]
         n = racun.dimenzije['B'][1]
         rezultat = racun.izvedi_operacijo('A', operacija, 'B')
+        racun.shrani_dimenzije('A', m, n)
         return bottle.template('rezultat.tpl', rezultat=rezultat, m=m, n=n)
     elif operacija in ["det", "trace"]:
         m = racun.dimenzije['A'][0]
@@ -115,6 +115,7 @@ def izvedi_racun():
         m = racun.dimenzije['A'][1]
         n = racun.dimenzije['A'][0]
         rezultat = racun.izvedi_operacijo('A', operacija)
+        racun.shrani_dimenzije('A', m, n)
         return bottle.template('rezultat.tpl', rezultat=rezultat, m=m, n=n)
     elif operacija in ["potenca"]:
         m = racun.dimenzije['A'][0]

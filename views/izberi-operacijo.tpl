@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta value="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
 	<title>Matrike</title>
 
 	<style>
@@ -25,48 +26,48 @@
                 <tr>
                     <th>
                         <button class="button" name="operacija" value="plus">
-                            <img src="/img/plus.png" alt="+" width="60" height="60">
+                            <img src="/img/plus.png" alt="+" width="120" height="120">
                         </button>
                     </th>
                     <th>
                         <button class="button" name="operacija" value="minus">
-                            <img src="/img/minus.png" alt="-" width="60" height="60">
+                            <img src="/img/minus.png" alt="-" width="120" height="120">
                         </button>
                     </th>                
                     <th>
                         <button class="button" name="operacija" value="produkt">
-                            <img src="/img/produkt.png" alt="*" width="60" height="60">
+                            <img src="/img/produkt.png" alt="*" width="120" height="120">
                         </button>
                     </th>
                 </tr>    
                 <tr>
                     <th>
                         <button class="button" name="operacija" value="hadamard">
-                            <img src="/img/hadamard.png" alt="o" width="60" height="60">
+                            <img src="/img/hadamard.png" alt="o" width="120" height="120">
                         </button>
                     </th>
                     <th>
                         <button class="button" name="operacija" value="potenca">
-                            <img src="/img/up-arrow.png" alt="^" width="60" height="60">
+                            <img src="/img/up-arrow.png" alt="^" width="120" height="120">
                         </button>
                     </th>             
                     <th>
-                        <button class="button" name="operacija" value="det">
-                            <img src="/img/det1.jpg" alt="det" width="100" height="70">
+                        <button class="button" name="operacija" value="transpose">
+                            <img src="/img/transpose.png" alt="t" width="120" height="120">
                         </button>
                     </th>
                 </tr>
                 <tr>
                     <th>
                         <button class="button" name="operacija" value="trace">
-                            <img src="/img/trace.jpg" alt="tr" width="100" height="60">
-                        </button>                        
+                            <img src="/img/trace.jpg" alt="tr" width="150" height="90">
+                        </button>
                     </th>
                     <th>
-                        <button class="button" name="operacija" value="transpose">
-                            <img src="/img/transpose.png" alt="t" width="50" height="50">
+                        <button class="button" name="operacija" value="det">
+                            <img src="/img/det1.jpg" alt="det" width="150" height="95">
                         </button>
-                    </th>            
+                    </th>          
                 </tr>
             </form> 
 	
