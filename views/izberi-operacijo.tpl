@@ -65,7 +65,7 @@
                     </th>
                     <th>
                         <button class="button" name="operacija" value="det">
-                            <img src="/img/det1.jpg" alt="det" width="150" height="95">
+                            <img src="/img/det.jpg" alt="det" width="150" height="95">
                         </button>
                     </th>          
                 </tr>
