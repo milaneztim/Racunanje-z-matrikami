@@ -18,10 +18,15 @@ def vnos_dimenzije(ime_matrike):
 @bottle.post('/vnos-matrike/<ime_matrike>')
 def prvi_vnos_matrike(ime_matrike):
     podatki = bottle.request.forms
-    m = int(podatki.get("m"))
-    n = int(podatki.get("n"))
-    racun.shrani_dimenzije(ime_matrike, m, n)
-    return bottle.template('vnos-matrike.tpl', m=m, n=n, ime_matrike=ime_matrike)
+    m = podatki.get("m")
+    n = podatki.get("n")
+    if m.isnumeric() and n.isnumeric():
+        m = int(m)
+        n = int(n)
+        racun.shrani_dimenzije(ime_matrike, m, n)
+        return bottle.template('vnos-matrike.tpl', m=m, n=n, ime_matrike=ime_matrike)
+    else:
+        return bottle.template('napaka-decimalno.tpl')
 
 
 @bottle.get('/vnos-matrike/<ime_matrike>')
@@ -90,9 +95,13 @@ def vnos_potence():
 
 @bottle.post('/shrani-potenco/')
 def shrani_potenco():
-    potenca = int(bottle.request.forms.get("potenca"))
-    racun.shrani_matriko('B', potenca)
-    return bottle.redirect('/rezultat/')
+    potenca = bottle.request.forms.get("potenca")
+    if potenca.isnumeric() or potenca[1:].isnumeric():
+        potenca = int(potenca)
+        racun.shrani_matriko('B', potenca)
+        return bottle.redirect('/rezultat/')
+    return bottle.template('napaka-decimalno.tpl')
+    
 
 
 @bottle.get('/rezultat/')            
