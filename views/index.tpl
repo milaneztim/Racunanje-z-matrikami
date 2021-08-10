@@ -11,8 +11,6 @@
 
   <blockquote style="font-size:20px;">
     Versatilen kalkulator, ki omogoča računanje z matrikami. 
-    <br>Navodila za uporabo:
-
   </blockquote>
 
   <form action="/vnos-dimenzije/A" method="POST" style="text-align:center; font-size:25px;">

@@ -1,7 +1,7 @@
 % rebase('osnova.tpl')
 
 
-<h2>Vnesite elemente matrike:</h2>
+<h1>Vnesite elemente matrike:</h1>
 <form action="/dodaj-matriko/{{ime_matrike}}" method="POST" class="matrika">
 	% for i in range(m):
 		<div class="vrstica">

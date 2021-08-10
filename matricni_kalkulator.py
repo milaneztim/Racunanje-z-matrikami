@@ -7,7 +7,7 @@ racun = model.Racun()
 
 @bottle.get('/')
 def index():
-    return bottle.template('base.tpl')
+    return bottle.template('index.tpl')
 
 
 @bottle.post('/vnos-dimenzije/<ime_matrike>')
@@ -120,9 +120,10 @@ def izvedi_racun():
     elif operacija in ["potenca"]:
         m = racun.dimenzije['A'][0]
         n = racun.dimenzije['A'][1]
+        potenca = racun.matrike['B'].sez
         if m != n:
             return bottle.template('napaka-dimenzija.tpl')
-        if racun.izvedi_operacijo('A', 'det') == 0:
+        if potenca < 0 and racun.izvedi_operacijo('A', 'det') == 0:
             return bottle.template('napaka-izrojena.tpl')
         rezultat = racun.izvedi_operacijo('A', operacija, 'B')
         return bottle.template('rezultat.tpl', rezultat=rezultat, m=m, n=n)

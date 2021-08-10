@@ -22,6 +22,10 @@
 			width: 4.5em;
 			margin: 0.5em;
 		}
+
+		h1 {
+			font-family: monospace;
+		}
 	</style>
 </head>
 <body>

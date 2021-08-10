@@ -1,7 +1,7 @@
 % rebase('osnova.tpl')
 
 
-<h2>Rezultat:</h2>
+<h1>Rezultat:</h1>
 <div class="matrika" style="font-size:30px">
 	{{rezultat}}
 </div>

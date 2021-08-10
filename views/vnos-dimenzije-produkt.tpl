@@ -2,7 +2,7 @@
 
 
 
-<h2>Vnesite dimenzijo:</h2>
+<h1>Vnesite dimenzijo:</h1>
 <form action="/vnos-matrike/B" method="POST" class="matrika">
 	<div class="vrstica">
 		<input type="number" class="element" name="m" value="{{m}}" readonly>
